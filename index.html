@@ -3,42 +3,262 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>I Love You</title>
+    <title>Romantic Surprise</title>
     <style>
         body {
-            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4e1f1;
+            font-family: 'Arial', sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            overflow: hidden;
+            flex-direction: column;
             text-align: center;
-            margin-top: 20%;
-            background-color: #ffe6e6;
+            color: #ff3366;
         }
-        #message {
+
+        /* Twinkling Stars Animation */
+        @keyframes twinkling {
+            0% { opacity: 0.8; }
+            50% { opacity: 1; }
+            100% { opacity: 0.8; }
+        }
+
+        .star {
+            position: absolute;
+            top: 10%;
+            left: 50%;
+            width: 5px;
+            height: 5px;
+            background-color: white;
+            border-radius: 50%;
+            animation: twinkling 1.5s infinite alternate;
+        }
+
+        .star:nth-child(odd) {
+            animation-duration: 2s;
+            animation-delay: 1s;
+        }
+
+        /* Gift Box Style */
+        .gift-box {
+            width: 150px;
+            height: 150px;
+            background-image: url('https://img.icons8.com/external-flaticons-lineal-color-flat-icons/64/000000/external-gift-valentines-flaticons-lineal-color-flat-icons.png');
+            background-size: cover;
+            position: relative;
+            cursor: pointer;
+            border-radius: 15px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 1.5rem;
+            color: white;
+            font-weight: bold;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            background-color: #ff66b2;
+            border: 2px solid #ff3366;
+            animation: sparkle 1.5s infinite alternate;
+        }
+
+        @keyframes sparkle {
+            0% { box-shadow: 0 0 10px rgba(255, 255, 255, 0.6); }
+            100% { box-shadow: 0 0 20px rgba(255, 255, 255, 1); }
+        }
+
+        /* Heart Style */
+        .heart {
+            width: 80px;
+            height: 80px;
+            background-color: #ff66cc;
+            position: relative;
+            transform: rotate(-45deg);
+            margin-top: 20px;
+            cursor: pointer;
+            animation: heartbeat 1.5s infinite alternate;
+            display: none;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .heart:before, .heart:after {
+            content: '';
+            width: 60px;
+            height: 60px;
+            background-color: #ff66cc;
+            position: absolute;
+            border-radius: 50%;
+        }
+
+        .heart:before {
+            top: -30px;
+            left: 0;
+        }
+
+        .heart:after {
+            left: -30px;
+            top: 0;
+        }
+
+        .heart-text {
+            font-size: 1.5rem;
+            color: white;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-family: 'Brush Script MT', cursive;
+            font-weight: bold;
+        }
+
+        @keyframes heartbeat {
+            0% { transform: scale(1); }
+            100% { transform: scale(1.1); }
+        }
+
+        /* Butterfly Animation */
+        .butterfly {
+            width: 100px;
+            height: 100px;
+            background: url('https://img.icons8.com/ios/50/000000/butterfly.png') no-repeat center;
+            background-size: cover;
+            position: absolute;
+            top: 10%;
+            left: 50%;
+            transform: translateX(-50%);
+            display: none;
+            animation: flyButterfly 5s linear infinite;
+        }
+
+        @keyframes flyButterfly {
+            0% { top: 10%; left: 50%; }
+            50% { top: 30%; left: 60%; }
+            100% { top: 10%; left: 80%; }
+        }
+
+        /* Additional Styles */
+        .sweet-message {
+            font-size: 1.8rem;
+            color: #ff66cc;
+            font-weight: bold;
+            margin-top: 30px;
+            animation: fadeIn 2s forwards;
+            text-shadow: 2px 2px 10px rgba(0, 0, 0, 0.2);
+        }
+
+        .click-message {
+            font-size: 1.5rem;
+            color: #ff3366;
+            cursor: pointer;
+            margin-top: 30px;
+            text-decoration: underline;
+            animation: fadeIn 3s forwards;
+        }
+
+        .name-heart {
             display: none;
             font-size: 2rem;
-            color: #ff3366;
-            margin-top: 20px;
+            font-family: 'Brush Script MT', cursive;
+            color: #ffffff;
+            text-shadow: 2px 2px 10px rgba(0, 0, 0, 0.3);
+            margin-top: 30px;
+            animation: fadeIn 2s forwards;
         }
-        a {
-            text-decoration: none;
-            color: #0066cc;
-            font-size: 1.2rem;
+
+        .name-heart .heart {
+            width: 120px;
+            height: 120px;
+            background-color: #ff3366;
+            position: relative;
+            transform: rotate(-45deg);
+            margin-left: auto;
+            margin-right: auto;
+            animation: heartbeat 1s infinite alternate;
         }
-        a:hover {
-            color: #ff3366;
+
+        .name-heart .heart:before, .name-heart .heart:after {
+            content: '';
+            width: 60px;
+            height: 60px;
+            background-color: #ff3366;
+            position: absolute;
+            border-radius: 50%;
         }
+
+        .name-heart .heart:before {
+            top: -30px;
+            left: 0;
+        }
+
+        .name-heart .heart:after {
+            left: -30px;
+            top: 0;
+        }
+
+        .name-heart .text {
+            font-size: 1.8rem;
+            color: white;
+            margin-top: 15px;
+            text-align: center;
+        }
+
     </style>
 </head>
 <body>
-    <a href="#" id="loveLink">Click me ♥</a>
-    <div id="message">I love you ❤️</div>
+
+    <!-- Twinkling Stars -->
+    <div class="star" style="top: 10%; left: 20%; animation-delay: 0s;"></div>
+    <div class="star" style="top: 25%; left: 60%; animation-delay: 0.5s;"></div>
+    <div class="star" style="top: 40%; left: 80%; animation-delay: 1s;"></div>
+    <div class="star" style="top: 60%; left: 30%; animation-delay: 1.5s;"></div>
+    <div class="star" style="top: 75%; left: 50%; animation-delay: 2s;"></div>
+
+    <!-- Gift Box -->
+    <div class="gift-box" id="giftBox">Open it 🎁</div>
+
+    <!-- Sweet Message -->
+    <div class="sweet-message" id="sweetMessage">You are beautiful like a butterfly and sweet like Kaju Katli 💖</div>
+
+    <!-- Butterfly -->
+    <div class="butterfly" id="butterfly"></div>
+
+    <!-- Heart with Text -->
+    <div class="heart" id="heart" style="display: none;">
+        <div class="heart-text">Click me ❤️</div>
+    </div>
+
+    <!-- Click Here Message -->
+    <div class="click-message" id="clickMessage" style="display: none;">Click here</div>
+
+    <!-- Name Heart Message -->
+    <div class="name-heart" id="nameHeart">
+        <div class="heart"></div>
+        <div class="text">Deepanshi, I love you ❤️</div>
+    </div>
 
     <script>
-        const link = document.getElementById('loveLink');
-        const message = document.getElementById('message');
+        document.getElementById('giftBox').addEventListener('click', function() {
+            document.getElementById('sweetMessage').style.display = 'block';
+            document.getElementById('butterfly').style.display = 'block';
 
-        link.addEventListener('click', (e) => {
-            e.preventDefault(); // Prevent default link behavior
-            message.style.display = 'block';
+            setTimeout(function() {
+                document.getElementById('heart').style.display = 'block';
+            }, 3000); // Wait before showing the heart
+
+            setTimeout(function() {
+                document.getElementById('clickMessage').style.display = 'block';
+            }, 6000); // Show "Click here" message after heart appears
+        });
+
+        document.getElementById('heart').addEventListener('click', function() {
+            document.getElementById('nameHeart').style.display = 'block';
         });
     </script>
+
 </body>
 </html>
