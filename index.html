@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>I Love You</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin-top: 20%;
+            background-color: #ffe6e6;
+        }
+        #message {
+            display: none;
+            font-size: 2rem;
+            color: #ff3366;
+            margin-top: 20px;
+        }
+        a {
+            text-decoration: none;
+            color: #0066cc;
+            font-size: 1.2rem;
+        }
+        a:hover {
+            color: #ff3366;
+        }
+    </style>
+</head>
+<body>
+    <a href="#" id="loveLink">Click me ♥</a>
+    <div id="message">I love you ❤️</div>
+
+    <script>
+        const link = document.getElementById('loveLink');
+        const message = document.getElementById('message');
+
+        link.addEventListener('click', (e) => {
+            e.preventDefault(); // Prevent default link behavior
+            message.style.display = 'block';
+        });
+    </script>
+</body>
+</html>
